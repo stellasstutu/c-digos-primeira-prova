@@ -1,0 +1,84 @@
+programa
+{
+	inclua biblioteca Matematica --> Mt
+	
+	funcao inicio()
+	{
+		//QUESTÃO I ENTRADA DE VÁRIAVEIS
+		real consumoDeEnergiaIkwh, consumoDeEnergiaIIkwh, consumoDeEnergiaIIIkwh, consumoDeEnergiaIVkwh
+
+		escreva("Entre com o 1º consumo de energia elétrica em kWh\n")
+		leia(consumoDeEnergiaIkwh)
+		logico eErroDoconsumoDeEnergiaIkwh = consumoDeEnergiaIkwh < 0
+		se(eErroDoconsumoDeEnergiaIkwh){
+			escreva("Valores não são computados")
+			retorne
+		}
+		escreva("Entre com o 2º consumo de energia elétrica em kWh\n")
+		leia(consumoDeEnergiaIIkwh)
+		logico eErroDoconsumoDeEnergiaIIkwh = consumoDeEnergiaIIkwh < 0
+		se(eErroDoconsumoDeEnergiaIIkwh){
+			escreva("Valores não são computados")
+			retorne
+		}
+		escreva("Entre com o 3º consumo de energia elétrica em kWh\n")
+		leia(consumoDeEnergiaIIIkwh)
+		logico eErroDoconsumoDeEnergiaIIIkwh = consumoDeEnergiaIIIkwh < 0
+		se(eErroDoconsumoDeEnergiaIIIkwh){
+			escreva("Valores não são computados")
+			retorne
+		}
+		escreva("Entre com o 4º consumo de energia elétrica em kWh\n")
+		leia(consumoDeEnergiaIVkwh)
+		logico eErroDoconsumoDeEnergiaIVkwh = consumoDeEnergiaIVkwh < 0
+		se(eErroDoconsumoDeEnergiaIVkwh){
+			escreva("Valores não são computados")
+			retorne
+		}
+		//QUESTÃO II 
+		escreva("\n---------------------------------------------------------\n\n")
+		escreva("Consumos de energia desordenados:\n",consumoDeEnergiaIkwh," < ",consumoDeEnergiaIIkwh," > ",consumoDeEnergiaIIIkwh," > ",consumoDeEnergiaIVkwh,"\n\n")
+		//QUESTAO III
+		real menorConsumo,maiorConsumo
+		
+		//Ordenando as resistencias de forma crescente
+		logico c1MenorQueC2 = consumoDeEnergiaIkwh < consumoDeEnergiaIIkwh
+		se(c1MenorQueC2){
+			maiorConsumo = consumoDeEnergiaIkwh
+			consumoDeEnergiaIkwh = consumoDeEnergiaIIkwh
+			consumoDeEnergiaIIkwh = maiorConsumo 
+			
+		}
+		logico c1MenorQueC3 = consumoDeEnergiaIkwh < consumoDeEnergiaIIIkwh
+		se(c1MenorQueC3){
+			maiorConsumo = consumoDeEnergiaIkwh
+			consumoDeEnergiaIkwh = consumoDeEnergiaIIIkwh
+			consumoDeEnergiaIIIkwh = maiorConsumo 
+			
+		}
+		logico c2MenorQueC3 = consumoDeEnergiaIIkwh < consumoDeEnergiaIIIkwh
+		se(c2MenorQueC3){
+			maiorConsumo = consumoDeEnergiaIIkwh
+			consumoDeEnergiaIIkwh = consumoDeEnergiaIIIkwh
+			consumoDeEnergiaIIIkwh = maiorConsumo 
+			
+		}
+		maiorConsumo= consumoDeEnergiaIkwh
+		menorConsumo=  consumoDeEnergiaIVkwh
+		escreva("Consumos de energia ordenados decrescentemente:\n",maiorConsumo," > ",consumoDeEnergiaIIkwh," > ",menorConsumo," == ",menorConsumo)
+		escreva("\n---------------------------------------------------------\n\n")
+		//QUESTÃO IV
+		const inteiro PRECISAO = 3
+		real somaDaMEdiana = consumoDeEnergiaIIkwh + consumoDeEnergiaIIIkwh
+		logico eErroDaMEdiana = consumoDeEnergiaIIkwh == 0 ou consumoDeEnergiaIIIkwh == 0 
+		se(eErroDaMEdiana){
+			escreva("Como um dos numeros é nulo tanto a media geometrica = 0.0 e a mediana é = 0.0")
+			retorne
+		}
+		real mediana = somaDaMEdiana / 2.0
+		real produtoDaMedia = consumoDeEnergiaIIkwh * mediana * consumoDeEnergiaIIIkwh
+		real mediaGeometrica = Mt.raiz(produtoDaMedia, 3.0)
+		escreva("Mediana dos consumos centrais = ",Mt.arredondar(mediana, PRECISAO),"\n")
+		escreva("Média geométrica dos consumos centrais = ",Mt.arredondar(mediaGeometrica, PRECISAO))
+	}
+}
